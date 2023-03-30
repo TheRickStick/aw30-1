@@ -4,11 +4,11 @@ var router = express.Router();
 
 router.use(jsend.middleware);
 router.get('/:number1/:number2', function(req, res, next) {
-    const number1 = parseInt(req.params.number1);
+    const number1 = parseFloat(req.params.number1);
     if(isNaN(number1)) {
         return res.jsend.fail({"number1": "number1 is not in correct format"});
     }
-    const number2 = parseInt(req.params.number2);
+    const number2 = parseFloat(req.params.number2);
     if(isNaN(number2)) {
         return res.jsend.fail({"number2": "number2 is not in correct format"});
     }

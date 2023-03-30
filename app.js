@@ -1,4 +1,6 @@
 require('dotenv').config()
+var db = require("./models");
+db.sequelize.sync({ force: false })
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,6 +11,7 @@ var addRouter = require('./routes/add');
 var subtractRouter = require('./routes/subtract');
 var multiplyRouter = require('./routes/multiply');
 var divideRouter = require('./routes/divide');
+var authRouter = require('./routes/auth');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -23,6 +26,7 @@ app.use('/add', addRouter);
 app.use('/subtract', subtractRouter);
 app.use('/multiply', multiplyRouter);
 app.use('/divide', divideRouter);
+app.use('/', authRouter);
 
 app.use(logger('dev'));
 app.use(express.json());
